@@ -5,6 +5,7 @@ import useLogin from "@/hooks/useLogin";
 
 const Layout = (props) => {
   const isLogin = useLogin();
+  console.log(isLogin);
   return isLogin ? (
     <div className="layout">
       <Outlet />

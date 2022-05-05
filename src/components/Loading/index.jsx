@@ -1,6 +1,6 @@
-import React from 'react';
-import { Spin } from '@douyinfe/semi-ui';
-import './index.less';
+import React from "react";
+import { Spin } from "antd";
+import "./index.less";
 
 const Loading = () => (
   <div className="loader-container">
