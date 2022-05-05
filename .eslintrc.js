@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:react-hooks/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -24,5 +24,8 @@ module.exports = {
     'jsx-quotes': ['error', 'prefer-double'],
     'react/react-in-jsx-scope': 0,
     'react/jsx-one-expression-per-line': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-console': 'warn',
   },
 };

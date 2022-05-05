@@ -1,4 +1,4 @@
-const prefix = '/app';
+const prefix = '/ship-management/v1/api';
 
 const Api = {
   /* 获取用户信息 */

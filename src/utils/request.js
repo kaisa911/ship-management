@@ -20,6 +20,7 @@ function post(url, reqData, config = reqConfig) {
     .then((response) => response.data)
     .then((res) => {
       // TODO: some redirect handling
+      // console.log(res);
       return res;
     })
     .catch((error) => {
@@ -43,6 +44,7 @@ function get(
     .then((response) => response.data)
     .then((res) => {
       // TODO: some redirect handling
+      // console.log(res, 2333);
       return res;
     })
     .catch((error) => {

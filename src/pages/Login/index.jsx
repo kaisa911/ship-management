@@ -1,31 +1,34 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, KeyOutlined } from "@ant-design/icons";
-import { encode, decode } from "@/utils/index";
-import md5 from "md5";
-import "./index.less";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Form, Input, Button, Checkbox } from 'antd';
+import { useDispatch } from 'react-redux';
+import { UserOutlined, KeyOutlined } from '@ant-design/icons';
+import { encode, decode } from '@/utils/index';
+import Actions from '@/actions';
+import md5 from 'md5';
+import './index.less';
 
-const Login = (props) => {
+const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function getCookie(name) {
     let arr = [];
-    const reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    const reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)');
 
     if ((arr = document.cookie.match(reg))) {
       return unescape(arr[2]);
     }
-    return "";
+    return '';
   }
 
-  const username = getCookie("username");
-  const password = decode(getCookie("token"));
+  const initialUsername = getCookie('username');
+  const initialPassword = decode(getCookie('token'));
 
   const saveLocalStorage = (values) => {
     const { username, password } = values;
-    window.localStorage.setItem("username", username);
-    window.localStorage.setItem("token", md5(password));
+    window.localStorage.setItem('username', username);
+    window.localStorage.setItem('token', md5(password));
   };
 
   const rememberPassword = (values) => {
@@ -35,16 +38,22 @@ const Login = (props) => {
     document.cookie = `token=${base64Password}`;
   };
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
+    const { username, password } = values;
+    console.log(Actions);
+    await Actions.getUserInfo(dispatch, {
+      username,
+      password: md5(password),
+    });
     saveLocalStorage(values);
     if (values.remember) {
       rememberPassword(values);
     }
-    navigate("/ship-management", { replace: true });
+    navigate('/ship-management', { replace: true });
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -60,8 +69,8 @@ const Login = (props) => {
             }}
             initialValues={{
               remember: true,
-              username,
-              password,
+              username: initialUsername,
+              password: initialPassword,
             }}
             layout="vertical"
             onFinish={onFinish}
@@ -73,7 +82,7 @@ const Login = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "请输入账号",
+                  message: '请输入账号',
                 },
               ]}
             >
@@ -86,7 +95,7 @@ const Login = (props) => {
               rules={[
                 {
                   required: true,
-                  message: "请输入密码",
+                  message: '请输入密码',
                 },
               ]}
             >

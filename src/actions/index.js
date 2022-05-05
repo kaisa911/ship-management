@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import request from '@/utils/request';
 import api from '@/utils/api';
 import { GET_USER_INFO } from '@/utils/actionTypes.js';
@@ -10,8 +11,10 @@ import { GET_USER_INFO } from '@/utils/actionTypes.js';
  * @param type  设置action的type
  * @returns {function(*)}
  */
-const commonCallApi = (dispatch, formData, requestUrl, type) => {
-  return request.post(requestUrl, formData).then((res) => {
+const commonCallApi = (dispatch, method, requestUrl, formData, type) => {
+  console.log(dispatch, formData, requestUrl);
+  return request[method](requestUrl, formData).then((res) => {
+    console.log(res);
     if (res.code === 200) {
       const data = type
         ? dispatch({
@@ -32,9 +35,9 @@ const commonCallApi = (dispatch, formData, requestUrl, type) => {
  * @param type  设置action的type
  * @returns {function(*)}
  */
-const commonAction = (requestUrl, formData, type) => {
+const commonAction = (method, requestUrl, formData, type) => {
   return (dispatch) => {
-    return commonCallApi(dispatch, requestUrl, formData, type);
+    return commonCallApi(dispatch, method, requestUrl, formData, type);
   };
 };
 
@@ -43,10 +46,13 @@ const commonAction = (requestUrl, formData, type) => {
  * @param formData
  * @returns {function(*)}
  */
-const getList = (formData) => {
-  return commonAction(api.getUserInfo, formData, GET_USER_INFO);
+export const getUserInfo = (dispatch, formData = {}) => {
+  if (dispatch) {
+    return commonCallApi(dispatch, 'get', api.getUserInfo, formData, GET_USER_INFO);
+  }
+  return commonAction('get', api.getUserInfo, formData, GET_USER_INFO);
 };
 
 export default {
-  getList,
+  getUserInfo,
 };
