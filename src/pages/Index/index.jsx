@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Actions from '@/actions';
-// const Index = (props) => {
-//   return <div className="index">index</div>;
-// };
+
 class Index extends PureComponent {
   constructor(props) {
     super(props);

@@ -7,7 +7,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        // additionalData: `@import "${path.resolve(__dirname, 'src/assets/main.less')}";`,
+        // additionalData: `@import "${path.resolve(__dirname, 'src/assets/css/index.less')}";`,
+        modifyVars: {
+          // 此处也可设置直角、边框色、字体大小等
+          'primary-color': '#645AFF',
+        },
         javascriptEnabled: true,
       },
     },

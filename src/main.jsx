@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import App from '@/App';
 import store from '@/store';
-import '@/assets/css/index.css';
+import '@/assets/css/index.less';
 import 'antd/dist/antd.less';
 
 const history = createBrowserHistory({ window });
