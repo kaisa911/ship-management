@@ -1,6 +1,7 @@
 import React, { Suspense, PureComponent, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-type';
 import load from '@/utils/loader';
 import Loading from '@/components/Loading';
 
@@ -46,5 +47,8 @@ class App extends PureComponent {
   }
 }
 
+App.propTypes = {
+  history: PropTypes.object,
+};
 const mapStateToProps = (state) => ({ ...state });
 export default connect(mapStateToProps)(App);

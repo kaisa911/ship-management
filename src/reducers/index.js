@@ -4,7 +4,7 @@ import { GET_USER_INFO } from '@/utils/actionTypes';
 const rootReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USER_INFO:
-      return { ...state, userInfo: action.data };
+      return { ...state, userInfo: action.data }; // eslint-disable-line
     default: // need this for default case
       return state;
   }
