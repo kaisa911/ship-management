@@ -1,7 +1,7 @@
 import React, { Suspense, PureComponent, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-type';
+import PropTypes from 'prop-types';
 import load from '@/utils/loader';
 import Loading from '@/components/Loading';
 
